@@ -11,4 +11,20 @@ function init () {
   canvas.setAttribute("position", "absolute");
 
   document.body.appendChild(canvas);
+
+  // Set the update interval
+  setInterval(mainloop, 10);
+}
+
+function  mainloop() {
+  update();
+  draw();
+}
+
+function update() {
+
+}
+
+function draw() {
+
 }

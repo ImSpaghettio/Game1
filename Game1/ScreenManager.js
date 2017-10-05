@@ -1,8 +1,11 @@
 //------- ScreenManager -------\\
 // Switches between screens (titlescreen, gamescreen)
 
-function initialize() {
+// The current screen
+var screen
 
+function initialize() {
+  screen = 'titlescreen'
 }
 
 function update() {
@@ -11,4 +14,11 @@ function update() {
 
 function draw() {
 
+}
+
+
+static class Screen {
+  constructor() {
+
+  }
 }

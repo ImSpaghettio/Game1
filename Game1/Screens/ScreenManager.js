@@ -6,11 +6,16 @@ var ScreenManager = {};
 // The current screen
 ScreenManager.currentScreen = 'gamescreen'
 
-ScreenManager.initialize = function initialize() {
+//------- Initialize All Screens -------\\
+ScreenManager.initialize = function () {
   GameScreen.initialize();
 }
 
-ScreenManager.update = function update() {
+//------- Update Current Screen -------\\
+ScreenManager.update = function () {
+
+  // Switch the current screen and
+  // run that screens update function
   switch (this.currentScreen) {
     case 'titlescreen':
       TitleScreen.update();
@@ -23,7 +28,11 @@ ScreenManager.update = function update() {
   }
 }
 
-ScreenManager.draw = function draw() {
+//------- Draw Current Screen -------\\
+ScreenManager.draw = function () {
+
+  // Switch the current screen and
+  // run that screens draw function
   switch (this.currentScreen) {
     case 'titlescreen':
       TitleScreen.draw();

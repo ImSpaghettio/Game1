@@ -24,12 +24,17 @@ function init () {
 
   ScreenManager.initialize();
 
+  resize();
+
   // Set the update interval
   setInterval(mainloop, GameSettings.UPDATEINTERVAL);
 }
 
 //------- The game loop -------\\
 function  mainloop() {
+  // Update the InputManager
+  InputManager.update();
+
   // update and draw the screenmanager every cycle
   ScreenManager.update();
   ScreenManager.draw();
@@ -40,4 +45,9 @@ function resize () {
   // Resizes the canvas to fit the screen
   document.getElementById("gamecanvas").width = window.innerWidth;
   document.getElementById("gamecanvas").height = window.innerHeight;
+
+  GameSettings.SCREENWIDTH = window.innerWidth;
+  GameSettings.SCREENHEIGHT = window.innerHeight;
+
+  Character.resize();
 }

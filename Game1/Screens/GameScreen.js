@@ -1,62 +1,71 @@
 var GameScreen = {}
 
-var tileArray
+GameScreen.clock = new Clock();
 
-GameScreen.initialize = function initialize() {
-  this.isMapLoaded = false;
-  MapLoader.initialize();
-  this.mapArray = [
-    "Map1.csv", "Map2.csv"
-  ];
-
-  this.currentMap = null;
-  this.currentMapSource = 'Map1.csv';
-  this.getTiles();
+//------- Initialize All Elements Of GameScreen -------\\
+GameScreen.initialize = function () {
+  Map.initialize();
+  Character.initialize();
+  var isMoving = false, axis, posChange;
 }
 
-GameScreen.update = function update() {
-  if (!this.isMapLoaded) {
+//------- Update All Elements Of GameScreen -------\\
+GameScreen.update = function () {
+  Map.update();
+  Character.update();
 
-    // Set map to null and load new map
-    this.currentMap = null;
-    this.currentMap = MapLoader.loadMap('Map1');
+  // Check if a move key is down
+  if (!this.isMoving && InputManager.checkKey(GameSettings.UP)) {
+    Character.move('up');
+    this.isMoving = true;
+    this.axis  = 'y';
+    this.posChange = -1
 
-     // If it was loaded set loaded to true
-    if(this.currentMap != null)
-      this.isMapLoaded = true;
+    this.clock.startTimer(GameSettings.WALKTIME);
   }
-}
 
-GameScreen.draw = function draw() {
-  canvas = document.getElementById(GameSettings.CANVASID);
-  ctx = canvas.getContext('2d');
-  if (this.isMapLoaded) {
-    this.drawMap(ctx);
+  else if (!this.isMoving && InputManager.checkKey(GameSettings.DOWN)) {
+    Character.move('down');
+    this.isMoving = true;
+    this.axis  = 'y';
+    this.posChange = 1;
+
+    this.clock.startTimer(GameSettings.WALKTIME);
   }
-}
 
-GameScreen.drawMap = function drawMap(ctx) {
-  for (var i = 0; i < this.currentMap.length; i++) {
-    for (var j = 0; j < this.currentMap[i].length; j++) {
-      ctx.drawImage(this.tileArray[this.currentMap[i][j]],i*GameSettings.TILESIZE, j*GameSettings.TILESIZE);
+  else if (!this.isMoving && InputManager.checkKey(GameSettings.LEFT)) {
+    Character.move('left');
+    this.isMoving = true;
+    this.axis  = 'x';
+    this.posChange = -1;
+
+    this.clock.startTimer(GameSettings.WALKTIME);
+  }
+
+  else if (!this.isMoving && InputManager.checkKey(GameSettings.RIGHT)) {
+    Character.move('right');
+    this.isMoving = true;
+    this.axis  = 'x';
+    this.posChange = 1;
+
+    this.clock.startTimer(GameSettings.WALKTIME);
+  }
+
+  if (this.isMoving){
+    this.clock.updateTime();
+    Character.continueMove(this.clock.getTime());
+    Map.setChange(axis, this.clock.getTime())
+
+    if (this.clock.isDone){
+      this.isMoving = false;
+      map.resetChange();
+      Character.changePos(posChange, axis);
     }
   }
 }
 
-GameScreen.getTiles = function getTiles () {
-  this.tileArray = [];
-  this.tileArray.push(this.createImage("wasteland", "Assets/Wasteland.png"));
-  GameSettings.WASTELANDCODE = this.tileArray.length;
-  this.tileArray.push(this.createImage("grass", "Assets/Grass.png"));
-  GameSettings.GRASSCODE = this.tileArray.length;
-}
-
-GameScreen.createImage = function createImage(id, src) {
-  var img = document.createElement("IMG");
-
-  img.setAttribute("id", id);
-  img.setAttribute("src", src);
-
-  document.body.appendChild(img);
-  return document.getElementById(id);
+//------- Draw All Elements Of GameScreen -------\\
+GameScreen.draw = function () {
+  Map.draw();
+  Character.draw();
 }

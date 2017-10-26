@@ -1,9 +1,9 @@
 var TitleScreen = {}
 
-TitleScreen.update = function update() {
+TitleScreen.update = function () {
 
 }
 
-TitleScreen.draw = function draw() {
+TitleScreen.draw = function () {
 
 }

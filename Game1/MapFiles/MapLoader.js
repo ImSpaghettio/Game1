@@ -1,28 +1,30 @@
 //------- MapLoader -------\\
 
 /*
-  Loads a map from a file and returns a the 2d array (array of anarray)
-
-  loadMap is given the id of a csv file and prepares it to be read
-
-  getMap returns the map csv as a 2d array if id is done being read, if
-  not it returns null
+  Initializes maps as strings then adds them to an array.
+  Loads a map into a 2d array based on the map name and
+  returns the array.
 */
 
+// Namespace
 var MapLoader = {};
 
-// Map to be returned
-var MapLoaderLoadedMap;
+//------- Global Maps -------\\
+
 var Map1;
+
+// Array of maps
 var maps;
 
-MapLoader.initialize = function initialize() {
+//------- Create Maps -------\\
+MapLoader.initialize = function () {
   Map1 = new this.mapItem('Map1', '5,5,1,0,0,1,0,1,0,1,0,1,0,1,1,1,0,1,1,1,1,1,0,0,0,0,0');
   maps = [];
   maps.push(Map1);
 }
 
-MapLoader.loadMap = function loadMap(mapName) {
+//------- Load Map From String -------\\
+MapLoader.loadMap = function (mapName) {
   var rMap = [];
   var line = [];
   var elements = [];
@@ -45,12 +47,14 @@ MapLoader.loadMap = function loadMap(mapName) {
   return rMap;
 }
 
-MapLoader.mapItem = function map(name, map) {
+//------- Map Object -------\\
+MapLoader.mapItem = function (name, map) {
   this.name = name;
   this.map = map;
 }
 
-MapLoader.getMap = function getMap(name){
+//------- Return A Map String From Name -------\\
+MapLoader.getMap = function (name){
   for (var i = 0; i < maps.length; i++){
     if (maps[i].name == name)
       return maps[i].map;

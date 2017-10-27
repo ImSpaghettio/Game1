@@ -10,9 +10,9 @@ GameSettings.CHARACTERHEIGHT = 60;
 GameSettings.CHARACTERHEIGHTSIDE = 54;
 GameSettings.CHARACTERWIDTH = 36;
 GameSettings.CURRENTCHARACTERHEIGHT;
-GameSettings.WALKTIME = 1;
-GameSettings.SECONDANIMATION = .2;
-GameSettings.THIRDANIMATION = .8;
+GameSettings.WALKTIME = .5;
+GameSettings.SECONDANIMATION = .04;
+GameSettings.THIRDANIMATION = .45;
 
 //------- Game Controls -------\\
 GameSettings.UP = enums.keyboard.KEY_W;
@@ -55,6 +55,6 @@ GameSettings.createImage = function (id, src) {
   img.setAttribute("src", src);
 
   document.body.appendChild(img);
-
+  img = document.getElementById(id).style.display = "none"
   return document.getElementById(id);
 }

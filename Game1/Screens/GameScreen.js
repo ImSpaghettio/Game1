@@ -54,12 +54,12 @@ GameScreen.update = function () {
   if (this.isMoving){
     this.clock.updateTime();
     Character.continueMove(this.clock.getTime());
-    Map.setChange(axis, this.clock.getTime())
+    Map.setChange(this.axis, this.clock.getTime(), this.posChange * -1)
 
     if (this.clock.isDone){
       this.isMoving = false;
-      map.resetChange();
-      Character.changePos(posChange, axis);
+      Map.resetChange();
+      Character.changePos(this.posChange, this.axis);
     }
   }
 }

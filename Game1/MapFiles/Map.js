@@ -2,6 +2,9 @@ var Map = {}
 
 var tileArray
 
+Map.xChange;
+Map.yChange;
+
 Map.initialize = function () {
   this.isMapLoaded = false;
   MapLoader.initialize();
@@ -66,13 +69,13 @@ Map.getTiles = function () {
   GameSettings.GRASSCODE = this.tileArray.length;
 }
 
-Map.setChange = function(direction, time) {
+Map.setChange = function(direction, time, posChange) {
   switch (direction) {
     case 'x':
-      xChange = time/GameSettings.WALKTIME * GameSettings.TILESIZE;
+      this.xChange = posChange* (time/GameSettings.WALKTIME * GameSettings.TILESIZE);
       break;
     case 'y':
-      yChange = time/GameSettings.WALKTIME * GameSettings.TILESIZE;
+      this.yChange = posChange * (time/GameSettings.WALKTIME * GameSettings.TILESIZE);
       break;
     default:
 
@@ -80,6 +83,6 @@ Map.setChange = function(direction, time) {
 }
 
 Map.resetChange = function() {
-  xChange = 0;
-  yChange = 0;
+  this.xChange = 0;
+  this.yChange = 0;
 }

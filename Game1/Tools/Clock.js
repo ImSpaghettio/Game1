@@ -11,6 +11,7 @@ class Clock {
   }
 
   startTimer(time) {
+    date = new Date();
     this.startTime = date.getTime();
     this.targetTime = date.getTime() + (1000*time);
     this.isDone = false;
@@ -21,6 +22,7 @@ class Clock {
   }
 
   updateTime() {
+    date = new Date();
     this.currentTime = date.getTime();
 
     if (this.currentTime >= this.targetTime){

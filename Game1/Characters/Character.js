@@ -4,6 +4,8 @@ var Character = {}
 Character.characterArray = [];
 Character.xPos;
 Character.yPos;
+Character.posOnMapX;
+Character.posOnMapY;
 Character.currentImage = 0;
 
 //------- Character Animation -------\\
@@ -32,6 +34,7 @@ Character.resize = function () {
   this.xPos = GameSettings.SCREENWIDTH/2 - GameSettings.CHARACTERWIDTH/2;
 }
 
+//------- Draw The Current Character -------\\
 Character.draw = function () {
   canvas = document.getElementById(GameSettings.CANVASID);
   ctx = canvas.getContext('2d');
@@ -39,7 +42,13 @@ Character.draw = function () {
   ctx.drawImage(this.characterArray[this.currentImage], this.xPos, this.yPos, GameSettings.CHARACTERWIDTH, GameSettings.CHARACTERHEIGHT);
 }
 
+
+//------- Load All Character Animations -------\\
 Character.loadCharacter = function () {
+
+  // Get the array index of the texture.
+  // Then load the texture and push
+  // to characterArray
   GameSettings.CHARACTERFRONTCODE = this.characterArray.length;
   this.characterArray.push(GameSettings.createImage('CharacterFront', GameSettings.CHARCTERFRONTSRC));
   GameSettings.CHARACTERBACKCODE = this.characterArray.length;
@@ -53,13 +62,14 @@ Character.loadCharacter = function () {
   GameSettings.CHARACTERRIGHTWALKCODE = this.characterArray.length;
   this.characterArray.push(GameSettings.createImage('CharacterRightWalk', GameSettings. CHARACTERRIGHTWALKSRC));
 
+  // TODO delete later maybe idk
   this.characterArray[0].style.height = 60;
   this.characterArray[0].style.width = 36;
 }
 
 //------- Starts The Move Animation -------\\
 Character.move = function (direction) {
-  Direction = direction;
+  this.Direction = direction;
 
 // Set the current character image to front back left right based
 // on the direction they are moving
@@ -110,11 +120,11 @@ Character.move = function (direction) {
     }
   }
 
-  Character.posChange = function (posChange, axis) {
+  Character.changePos = function (posChange, axis) {
     if (axis == 'x')
-      posOnMapX += posChange;
+      this.posOnMapX += posChange;
 
     if (axis == 'y')
-      posOnMapY += posChange;
+      this.posOnMapY += posChange;
   }
 }

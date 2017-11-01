@@ -10,15 +10,18 @@ GameSettings.CHARACTERHEIGHT = 60;
 GameSettings.CHARACTERHEIGHTSIDE = 54;
 GameSettings.CHARACTERWIDTH = 36;
 GameSettings.CURRENTCHARACTERHEIGHT;
-GameSettings.WALKTIME = .5;
+GameSettings.WALKTIME = .4;
 GameSettings.SECONDANIMATION = .04;
-GameSettings.THIRDANIMATION = .45;
+GameSettings.THIRDANIMATION = .37;
+GameSettings.INVENTORYROWS = 10;
+GameSettings.INVENTORYCOLS = 5;
 
 //------- Game Controls -------\\
 GameSettings.UP = enums.keyboard.KEY_W;
 GameSettings.DOWN = enums.keyboard.KEY_S;
 GameSettings.LEFT = enums.keyboard.KEY_A;
 GameSettings.RIGHT = enums.keyboard.KEY_D;
+GameSettings.INVENTORY = enums.keyboard.KEY_E;
 
 //------- Assets -------\\
 GameSettings.WASTELANDSRC = 'Assets/Tiles/Wasteland.png';

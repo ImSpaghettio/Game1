@@ -6,6 +6,7 @@ GameScreen.clock = new Clock();
 GameScreen.initialize = function () {
   Map.initialize();
   Character.initialize();
+  Inventory.initialize();
   var isMoving = false, axis, posChange;
 }
 
@@ -13,7 +14,12 @@ GameScreen.initialize = function () {
 GameScreen.update = function () {
   Map.update();
   Character.update();
+  this.checkMovement();
+  this.checkInventory();
+}
 
+//------- Check For Character Movement -------\\
+GameScreen.checkMovement = function() {
   // Check if a move key is down
   if (!this.isMoving && InputManager.checkKey(GameSettings.UP)) {
     Character.move('up');
@@ -51,6 +57,7 @@ GameScreen.update = function () {
     this.clock.startTimer(GameSettings.WALKTIME);
   }
 
+  // If the character is moving then continue animation
   if (this.isMoving){
     this.clock.updateTime();
     Character.continueMove(this.clock.getTime());
@@ -64,8 +71,15 @@ GameScreen.update = function () {
   }
 }
 
+GameScreen.checkInventory = function() {
+  if (InputManager.checkKey(GameSettings.INVENTORY) && !InputManager.checkLastKey(GameSettings.INVENTORY)) {
+    Inventory.isShowing = Inventory.isShowing ? false : true;
+  }
+}
+
 //------- Draw All Elements Of GameScreen -------\\
 GameScreen.draw = function () {
   Map.draw();
   Character.draw();
+  Inventory.draw();
 }

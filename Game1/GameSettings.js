@@ -1,7 +1,7 @@
 var GameSettings = {}
 
 //------- Constants -------\\
-GameSettings.UPDATEINTERVAL = 10;
+GameSettings.UPDATEINTERVAL = 5;
 GameSettings.CANVASID = "gamecanvas";
 GameSettings.TILESIZE = 48;
 GameSettings.SCREENWIDTH;
@@ -15,6 +15,8 @@ GameSettings.SECONDANIMATION = .04;
 GameSettings.THIRDANIMATION = .37;
 GameSettings.INVENTORYROWS = 10;
 GameSettings.INVENTORYCOLS = 5;
+GameSettings.INVENTORYX = 100;
+GameSettings.INVENTORYY = 100;
 
 //------- Game Controls -------\\
 GameSettings.UP = enums.keyboard.KEY_W;
@@ -24,9 +26,13 @@ GameSettings.RIGHT = enums.keyboard.KEY_D;
 GameSettings.INVENTORY = enums.keyboard.KEY_E;
 
 //------- Assets -------\\
+
+//------- Tiles -------\\
 GameSettings.WASTELANDSRC = 'Assets/Tiles/Wasteland.png';
 GameSettings.GRASSSRC = 'Assets/Tiles/Grass.png';
 GameSettings.ROCKSRC;
+
+//------- Character Images -------\\
 GameSettings.CHARCTERFRONTSRC = 'Assets/Characters/Character1Front.png';
 GameSettings.CHARACTERRIGHTSRC = 'Assets/Characters/Character1Right.png';
 GameSettings.CHARACTERRIGHTWALKSRC = 'Assets/Characters/Character1RightWalk.png';
@@ -34,11 +40,19 @@ GameSettings.CHARACTERBACKSRC = 'Assets/Characters/Character1Back.png';
 GameSettings.CHARACTERLEFTSRC = 'Assets/Characters/Character1Left.png';
 GameSettings.CHARACTERLEFTWALKSRC = 'Assets/Characters/Character1LeftWalk.png';
 
+//------- UI -------\\
+GameSettings.INVENTORYSRC = 'Assets/UI/Inventory.png';
+
+//------- Items -------\\
+
 
 //------- Tile Codes -------\\
 GameSettings.WASTELANDCODE;
 GameSettings.GRASSCODE;
 GameSettings.ROCK;
+
+//------- Image IDs -------\\
+GameSettings.INVENTORYID = 'Inventory';
 
 //------- Character Codes -------\\
 GameSettings.CHARACTERFRONTCODE;

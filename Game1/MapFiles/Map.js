@@ -26,7 +26,7 @@ Map.update = function () {
 
     // Set map to null and load new map
     this.currentMap = null;
-    this.currentMap = MapLoader.loadMap('Map1');
+    this.currentMap = MapLoader.loadMap('Map3');
 
      // If it was loaded set loaded to true
     if(this.currentMap != null)
@@ -52,8 +52,10 @@ Map.draw = function () {
 Map.drawMap = function (ctx) {
   for (var i = 0; i < this.currentMap.length; i++) {
     for (var j = 0; j < this.currentMap[i].length; j++) {
-      ctx.drawImage(document.getElementById(this.tileArray[this.currentMap[j][i]]),i*GameSettings.TILESIZE + this.mapX,
-       j*GameSettings.TILESIZE + this.mapY, GameSettings.TILESIZE, GameSettings.TILESIZE);
+      if (this.currentMap[i][j] != 0){
+        ctx.drawImage(document.getElementById(this.tileArray[this.currentMap[i][j]]),j*GameSettings.TILESIZE + this.mapX,
+          i*GameSettings.TILESIZE + this.mapY, GameSettings.TILESIZE, GameSettings.TILESIZE);
+     }
     }
   }
 }
@@ -61,12 +63,27 @@ Map.drawMap = function (ctx) {
 //------- Loads All Tiles -------\\
 Map.getTiles = function () {
   this.tileArray = [];
-  var tmp = GameSettings.createImage("wasteland", GameSettings.WASTELANDSRC)
-  this.tileArray.push(tmp.id);
-  GameSettings.WASTELANDCODE = this.tileArray.length;
-  tmp = GameSettings.createImage("grass", GameSettings.GRASSSRC)
-  this.tileArray.push(tmp.id);
-  GameSettings.GRASSCODE = this.tileArray.length;
+  this.tileArray[GameSettings.GRASSCODE] = (GameSettings.createImage("grass", GameSettings.GRASSSRC).id);
+  this.tileArray[GameSettings.WASTELANDCODE] = (GameSettings.createImage("wasteland", GameSettings.WASTELANDSRC).id);
+  this.tileArray[GameSettings.FLOWERCODE] = (GameSettings.createImage("flower", GameSettings.FLOWERSRC).id);
+  this.tileArray[GameSettings.ROCKCODE] = (GameSettings.createImage("rock", GameSettings.ROCKSRC).id);
+  this.tileArray[GameSettings.CACTUSBOTTOMCODE] = (GameSettings.createImage("cactusbottom", GameSettings.CACTUSBOTTOMSRC).id);
+  this.tileArray[GameSettings.CACTUSTOPCODE] = (GameSettings.createImage("cactustop", GameSettings.CACTUSTOPSRC).id);
+  this.tileArray[GameSettings.TREE2TOPCODE] = (GameSettings.createImage("tree2top", GameSettings.TREE2TOPSRC).id);
+  this.tileArray[GameSettings.TREE2BOTTOMCODE] = (GameSettings.createImage("tree2bottom", GameSettings.TREE2BOTTOMSRC).id);
+  this.tileArray[GameSettings.MOUNTAINCODE] = (GameSettings.createImage("mountain", GameSettings.MOUNTAINSRC).id);
+  this.tileArray[GameSettings.MOUNTAIN1CODE] = (GameSettings.createImage("mountain1", GameSettings.MOUNTAIN1SRC).id);
+  this.tileArray[GameSettings.MOUNTAIN2CODE] = (GameSettings.createImage("mountain2", GameSettings.MOUNTAIN2SRC).id);
+  this.tileArray[GameSettings.MOUNTAIN3CODE] = (GameSettings.createImage("mountain3", GameSettings.MOUNTAIN3SRC).id);
+  this.tileArray[GameSettings.BOTTOMLEFTSMALLHOUSECODE] = (GameSettings.createImage("bottomleftsmallhouse", GameSettings.BOTTOMLEFTSMALLHOUSESRC).id);
+  this.tileArray[GameSettings.BOTTOMMIDDLESMALLHOUSECODE] = (GameSettings.createImage("bottommiddlesmallhouse", GameSettings.BOTTOMMIDDLESMALLHOUSESRC).id);
+  this.tileArray[GameSettings.BOTTOMRIGHTSMALLHOUSECODE] = (GameSettings.createImage("bottomrightsmallhouse", GameSettings.BOTTOMRIGHTSMALLHOUSESRC).id);
+  this.tileArray[GameSettings.MIDDLELEFTSMALLHOUSECODE] = (GameSettings.createImage("middleleftsmallhouse", GameSettings.MIDDLELEFTSMALLHOUSESRC).id);
+  this.tileArray[GameSettings.MIDDLESMALLHOUSECODE] = (GameSettings.createImage("middlesmallhouse", GameSettings.MIDDLESMALLHOUSESRC).id);
+  this.tileArray[GameSettings.MIDDLERIGHTSMALLHOUSECODE] = (GameSettings.createImage("middlerightsmallhouse", GameSettings.MIDDLERIGHTSMALLHOUSESRC).id);
+  this.tileArray[GameSettings.TOPLEFTSMALLHOUSECODE] = (GameSettings.createImage("toprightsmallhouse", GameSettings.TOPLEFTSMALLHOUSESRC).id);
+  this.tileArray[GameSettings.TOPMIDDLESMALLHOUSECODE] = (GameSettings.createImage("topmiddlesmallhouse", GameSettings.TOPMIDDLESMALLHOUSESRC).id);
+  this.tileArray[GameSettings.TOPRIGHTSMALLHOUSECODE] = (GameSettings.createImage("toprightsmallhouse", GameSettings.TOPRIGHTSMALLHOUSESRC).id);
 }
 
 Map.setChange = function(direction, time, posChange) {

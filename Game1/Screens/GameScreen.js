@@ -21,7 +21,7 @@ GameScreen.update = function () {
 //------- Check For Character Movement -------\\
 GameScreen.checkMovement = function() {
   // Check if a move key is down
-  if (!this.isMoving && InputManager.checkKey(GameSettings.UP)) {
+  if (!this.isMoving && Map.checkLimits(Character.posOnMapX, Character.posOnMapY, 'up') && InputManager.checkKey(GameSettings.UP)) {
     Character.move('up');
     this.isMoving = true;
     this.axis  = 'y';
@@ -31,15 +31,19 @@ GameScreen.checkMovement = function() {
   }
 
   else if (!this.isMoving && InputManager.checkKey(GameSettings.DOWN)) {
-    Character.move('down');
-    this.isMoving = true;
-    this.axis  = 'y';
-    this.posChange = 1;
+    if (Map.checkLimits(Character.posOnMapX, Character.posOnMapY, 'down')) {
+      Character.move('down');
+      this.isMoving = true;
+      this.axis  = 'y';
+      this.posChange = 1;
 
-    this.clock.startTimer(GameSettings.WALKTIME);
+      this.clock.startTimer(GameSettings.WALKTIME);
+    }
+
+    else Character.face('down');
   }
 
-  else if (!this.isMoving && InputManager.checkKey(GameSettings.LEFT)) {
+  else if (!this.isMoving && Map.checkLimits(Character.posOnMapX, Character.posOnMapY, 'left')  && InputManager.checkKey(GameSettings.LEFT)) {
     Character.move('left');
     this.isMoving = true;
     this.axis  = 'x';
@@ -48,7 +52,7 @@ GameScreen.checkMovement = function() {
     this.clock.startTimer(GameSettings.WALKTIME);
   }
 
-  else if (!this.isMoving && InputManager.checkKey(GameSettings.RIGHT)) {
+  else if (!this.isMoving && Map.checkLimits(Character.posOnMapX, Character.posOnMapY, 'right')  && InputManager.checkKey(GameSettings.RIGHT)) {
     Character.move('right');
     this.isMoving = true;
     this.axis  = 'x';

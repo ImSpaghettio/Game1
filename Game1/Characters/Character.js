@@ -18,8 +18,8 @@ Character.initialize = function () {
   this.xPos = GameSettings.SCREENWIDTH/2 - GameSettings.CHARACTERWIDTH/2;
   this.yPos = GameSettings.SCREENHEIGHT/2 - GameSettings.CHARACTERHEIGHT/2;
 
-  this.posOnMapX = 0;
-  this.posOnMapY = 0;
+  this.posOnMapX = 10;
+  this.posOnMapY = 10;
 }
 
 Character.update = function () {

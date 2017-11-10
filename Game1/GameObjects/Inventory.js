@@ -39,7 +39,7 @@ Inventory.addItem = function(x,y, item) {
 
 class Item {
   constructor (name, durability, image) {
-    if (name != 'empty') {
+    if (this.name != 'empty') {
       this.durability = durability;
       this.image = image;
     }
@@ -48,7 +48,7 @@ class Item {
   }
 
   draw(x, y, ctx) {
-    if (name != 'empty') {
+    if (this.name != 'empty') {
       ctx.drawImage(this.image, x, y);
     }
   }

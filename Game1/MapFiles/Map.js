@@ -63,6 +63,8 @@ Map.drawMap = function (ctx) {
 //------- Loads All Tiles -------\\
 Map.getTiles = function () {
   this.tileArray = [];
+  this.solidTiles = [];
+
   this.tileArray[GameSettings.GRASSCODE] = (GameSettings.createImage("grass", GameSettings.GRASSSRC).id);
   this.tileArray[GameSettings.WASTELANDCODE] = (GameSettings.createImage("wasteland", GameSettings.WASTELANDSRC).id);
   this.tileArray[GameSettings.FLOWERCODE] = (GameSettings.createImage("flower", GameSettings.FLOWERSRC).id);
@@ -84,6 +86,25 @@ Map.getTiles = function () {
   this.tileArray[GameSettings.TOPLEFTSMALLHOUSECODE] = (GameSettings.createImage("toprightsmallhouse", GameSettings.TOPLEFTSMALLHOUSESRC).id);
   this.tileArray[GameSettings.TOPMIDDLESMALLHOUSECODE] = (GameSettings.createImage("topmiddlesmallhouse", GameSettings.TOPMIDDLESMALLHOUSESRC).id);
   this.tileArray[GameSettings.TOPRIGHTSMALLHOUSECODE] = (GameSettings.createImage("toprightsmallhouse", GameSettings.TOPRIGHTSMALLHOUSESRC).id);
+
+  // Add all solid blocks to the array for collision
+  this.solidTiles.push(GameSettings.CACTUSBOTTOMCODE);
+  this.solidTiles.push(GameSettings.CACTUSTOPCODE);
+  this.solidTiles.push(GameSettings.TREE2TOPCODE);
+  this.solidTiles.push(GameSettings.TREE2BOTTOMCODE);
+  this.solidTiles.push(GameSettings.MOUNTAINCODE);
+  this.solidTiles.push(GameSettings.MOUNTAIN1CODE);
+  this.solidTiles.push(GameSettings.MOUNTAIN2CODE);
+  this.solidTiles.push(GameSettings.MOUNTAIN3CODE);
+  this.solidTiles.push(GameSettings.BOTTOMRIGHTSMALLHOUSECODE);
+  this.solidTiles.push(GameSettings.BOTTOMLEFTSMALLHOUSECODE);
+  this.solidTiles.push(GameSettings.BOTTOMMIDDLESMALLHOUSECODE);
+  this.solidTiles.push(GameSettings.MIDDLELEFTSMALLHOUSECODE);
+  this.solidTiles.push(GameSettings.MIDDLESMALLHOUSECODE);
+  this.solidTiles.push(GameSettings.MIDDLERIGHTSMALLHOUSECODE);
+  this.solidTiles.push(GameSettings.TOPLEFTSMALLHOUSECODE);
+  this.solidTiles.push(GameSettings.TOPMIDDLESMALLHOUSECODE);
+  this.solidTiles.push(GameSettings.TOPRIGHTSMALLHOUSECODE);
 }
 
 Map.setChange = function(direction, time, posChange) {
@@ -102,4 +123,40 @@ Map.setChange = function(direction, time, posChange) {
 Map.resetChange = function() {
   this.xChange = 0;
   this.yChange = 0;
+}
+
+//------- Checks If The Player Will Hit A Solid -------\\
+Map.checkLimits = function(xPos, yPos, direction) {
+  switch (direction) {
+    case 'up':
+      if (this.isSolid(this.currentMap[yPos-1][xPos]))
+        return false;
+      return true;
+      break;
+    case 'down':
+    if (this.isSolid(this.currentMap[yPos+1][xPos]))
+      return false;
+    return true;
+      break;
+    case 'left':
+      if (this.isSolid(this.currentMap[yPos][xPos-1]))
+        return false;
+      return true;
+      break;
+    case 'right':
+      if (this.isSolid(this.currentMap[yPos][xPos+1]))
+        return false;
+        return true;
+      break;
+  }
+}
+
+//------- Checks If A Certain Tile Is Solid -------\\
+Map.isSolid = function(code) {
+  for(i = 0; i < this.solidTiles.length; i++) {
+    if (this.solidTiles[i] == code)
+      return true;
+  }
+
+  return false;
 }

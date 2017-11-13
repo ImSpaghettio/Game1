@@ -50,7 +50,7 @@ Character.loadCharacter = function () {
   // Then load the texture and push
   // to characterArray
   GameSettings.CHARACTERFRONTCODE = this.characterArray.length;
-  this.characterArray.push(GameSettings.createImage('CharacterFront', GameSettings.CHARCTERFRONTSRC));
+  this.characterArray.push(GameSettings.createImage('CharacterFront', GameSettings.CHARACTERFRONTSRC));
   GameSettings.CHARACTERBACKCODE = this.characterArray.length;
   this.characterArray.push(GameSettings.createImage('CharacterBack', GameSettings.CHARACTERBACKSRC));
   GameSettings.CHARACTERLEFTCODE = this.characterArray.length;
@@ -89,42 +89,60 @@ Character.move = function (direction) {
     default:
 
   }
+}
 
 //------- Continue The Move Animation
-  Character.continueMove = function(time) {
+Character.continueMove = function(time) {
 
-    currentTime = time/ GameSettings.WALKTIME;
-    // Check which direction and change images
-    // based on it. Change image based on how Far
-    // into the animation we are.
-    switch (this.Direction) {
-      case 'up':
-      // Add forward animation
-        break;
-      case 'down':
-      // Add backwards animation
-        break;
-      case 'left':
-      if (currentTime > GameSettings.THIRDANIMATION)
-        this.currentImage = GameSettings.CHARACTERLEFTCODE;
-      else if (currentTime > GameSettings.SECONDANIMATION)
-        this.currentImage = GameSettings.CHARACTERLEFTWALKCODE;
-        break;
-      case 'right':
-      if (currentTime > GameSettings.THIRDANIMATION)
-        this.currentImage = GameSettings.CHARACTERRIGHTCODE;
-      else if (currentTime > GameSettings.SECONDANIMATION)
-        this.currentImage = GameSettings.CHARACTERRIGHTWALKCODE;
-        break;
-      default:
-    }
+  currentTime = time/ GameSettings.WALKTIME;
+  // Check which direction and change images
+  // based on it. Change image based on how Far
+  // into the animation we are.
+  switch (this.Direction) {
+    case 'up':
+    // Add forward animation
+      break;
+    case 'down':
+    // Add backwards animation
+      break;
+    case 'left':
+    if (currentTime > GameSettings.THIRDANIMATION)
+      this.currentImage = GameSettings.CHARACTERLEFTCODE;
+    else if (currentTime > GameSettings.SECONDANIMATION)
+      this.currentImage = GameSettings.CHARACTERLEFTWALKCODE;
+      break;
+    case 'right':
+    if (currentTime > GameSettings.THIRDANIMATION)
+      this.currentImage = GameSettings.CHARACTERRIGHTCODE;
+    else if (currentTime > GameSettings.SECONDANIMATION)
+      this.currentImage = GameSettings.CHARACTERRIGHTWALKCODE;
+      break;
+    default:
   }
+}
 
-  Character.changePos = function (posChange, axis) {
-    if (axis == 'x')
-      this.posOnMapX += posChange;
+Character.changePos = function (posChange, axis) {
+  if (axis == 'x')
+    this.posOnMapX += posChange;
 
-    if (axis == 'y')
-      this.posOnMapY += posChange;
+  if (axis == 'y')
+    this.posOnMapY += posChange;
+}
+
+Character.face = function (direction) {
+  switch (direction) {
+    case 'up':
+      this.currentImage = GameSettings.CHARACTERBACKCODE;
+      break;
+    case 'down':
+      this.currentImage = GameSettings.CHARACTERFRONTCODE;
+      break;
+    case 'left':
+      this.currentImage = GameSettings.CHARACTERLEFTCODE;
+      break;
+    case 'right':
+      this.currentImage = GameSettings.CHARACTERRIGHTCODE;
+      break;
+    default:
   }
 }

@@ -51,7 +51,7 @@ GameSettings.TOPMIDDLESMALLHOUSESRC = 'Assets/Tiles/TopMiddleSmallHouse.png';
 GameSettings.TOPRIGHTSMALLHOUSESRC = 'Assets/Tiles/TopRightSmallHouse.png';
 
 //------- Character Images -------\\
-GameSettings.CHARCTERFRONTSRC = 'Assets/Characters/Character1Front.png';
+GameSettings.CHARACTERFRONTSRC = 'Assets/Characters/Character1Front.png';
 GameSettings.CHARACTERRIGHTSRC = 'Assets/Characters/Character1Right.png';
 GameSettings.CHARACTERRIGHTWALKSRC = 'Assets/Characters/Character1RightWalk.png';
 GameSettings.CHARACTERBACKSRC = 'Assets/Characters/Character1Back.png';

@@ -21,13 +21,17 @@ GameScreen.update = function () {
 //------- Check For Character Movement -------\\
 GameScreen.checkMovement = function() {
   // Check if a move key is down
-  if (!this.isMoving && Map.checkLimits(Character.posOnMapX, Character.posOnMapY, 'up') && InputManager.checkKey(GameSettings.UP)) {
-    Character.move('up');
-    this.isMoving = true;
-    this.axis  = 'y';
-    this.posChange = -1
+  if (!this.isMoving && InputManager.checkKey(GameSettings.UP)) {
+    if (Map.checkLimits(Character.posOnMapX, Character.posOnMapY, 'up')) {
+      Character.move('up');
+      this.isMoving = true;
+      this.axis  = 'y';
+      this.posChange = -1
 
-    this.clock.startTimer(GameSettings.WALKTIME);
+      this.clock.startTimer(GameSettings.WALKTIME);
+    }
+
+    else Character.face('up');
   }
 
   else if (!this.isMoving && InputManager.checkKey(GameSettings.DOWN)) {
@@ -43,22 +47,29 @@ GameScreen.checkMovement = function() {
     else Character.face('down');
   }
 
-  else if (!this.isMoving && Map.checkLimits(Character.posOnMapX, Character.posOnMapY, 'left')  && InputManager.checkKey(GameSettings.LEFT)) {
-    Character.move('left');
-    this.isMoving = true;
-    this.axis  = 'x';
-    this.posChange = -1;
+  else if (!this.isMoving  && InputManager.checkKey(GameSettings.LEFT)) {
+    if (Map.checkLimits(Character.posOnMapX, Character.posOnMapY, 'left')) {
+      Character.move('left');
+      this.isMoving = true;
+      this.axis  = 'x';
+      this.posChange = -1;
 
-    this.clock.startTimer(GameSettings.WALKTIME);
+      this.clock.startTimer(GameSettings.WALKTIME);
+    }
+    else Character.face('left');
   }
 
-  else if (!this.isMoving && Map.checkLimits(Character.posOnMapX, Character.posOnMapY, 'right')  && InputManager.checkKey(GameSettings.RIGHT)) {
-    Character.move('right');
-    this.isMoving = true;
-    this.axis  = 'x';
-    this.posChange = 1;
+  else if (!this.isMoving && InputManager.checkKey(GameSettings.RIGHT)) {
+    if (Map.checkLimits(Character.posOnMapX, Character.posOnMapY, 'right')) {
+      Character.move('right');
+      this.isMoving = true;
+      this.axis  = 'x';
+      this.posChange = 1;
 
-    this.clock.startTimer(GameSettings.WALKTIME);
+      this.clock.startTimer(GameSettings.WALKTIME);
+    }
+
+    else Character.face('right');
   }
 
   // If the character is moving then continue animation

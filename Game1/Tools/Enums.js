@@ -1,4 +1,5 @@
-var enums = {};   
+var enums = {};
+
 enums.keyboard = {
       BACKSPACE: 8,
       TAB: 9,
@@ -100,3 +101,8 @@ enums.keyboard = {
       CLOSE_BRACKET: 221,
       SINGLE_QUOTE: 222
     };
+
+enums.type = {
+  WEAPON: 0,
+  CONSUMABLE: 1
+};

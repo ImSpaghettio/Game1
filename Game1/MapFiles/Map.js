@@ -11,6 +11,7 @@ Map.initialize = function () {
   this.mapArray = [
     "Map1", "Map2"
   ];
+  Map1Data.initialize();
 
   this.currentMap = null;
   this.currentMapSource = 'Map1.csv';
@@ -31,6 +32,7 @@ Map.update = function () {
      // If it was loaded set loaded to true
     if(this.currentMap != null)
       this.isMapLoaded = true;
+      Map1Data.makeItems();
   }
 
   //------- Place the map relative to the character -------\\

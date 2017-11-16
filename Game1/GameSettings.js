@@ -9,6 +9,7 @@ GameSettings.SCREENHEIGHT;
 GameSettings.CHARACTERHEIGHT = 60;
 GameSettings.CHARACTERHEIGHTSIDE = 54;
 GameSettings.CHARACTERWIDTH = 36;
+GameSettings.ITEMSCALE = 3;
 GameSettings.CURRENTCHARACTERHEIGHT;
 GameSettings.WALKTIME = .3;
 GameSettings.SECONDANIMATION = .04;
@@ -17,6 +18,10 @@ GameSettings.INVENTORYROWS = 10;
 GameSettings.INVENTORYCOLS = 5;
 GameSettings.INVENTORYX = 100;
 GameSettings.INVENTORYY = 100;
+GameSettings.NUMWEAPONSLOTS = 2;
+GameSettings.FIRSTSLOTX = 2;
+GameSettings.FIRSTSLOTY = 32;
+GameSettings.SLOTSIZE = 51;
 
 //------- Game Controls -------\\
 GameSettings.UP = enums.keyboard.KEY_W;
@@ -59,10 +64,34 @@ GameSettings.CHARACTERLEFTSRC = 'Assets/Characters/Character1Left.png';
 GameSettings.CHARACTERLEFTWALKSRC = 'Assets/Characters/Character1LeftWalk.png';
 
 //------- UI -------\\
-GameSettings.INVENTORYSRC = 'Assets/UI/Inventory.png';
+GameSettings.INVENTORYSRC = 'Assets/UI/Inventory Slots.png';
+GameSettings.HEALTHFULLSRC = 'Assets/UI/HealthFull.png';
+GameSettings.HEALTH1SRC = 'Assets/UI/Health1.png';
+GameSettings.HEALTH2SRC = 'Assets/UI/Health2.png';
+GameSettings.HEALTH3SRC = 'Assets/UI/Health3.png';
+GameSettings.HEALTH4SRC = 'Assets/UI/Health4.png';
+GameSettings.HEALTH5SRC = 'Assets/UI/Health5.png';
+GameSettings.HEALTH6SRC = 'Assets/UI/Health6.png';
+GameSettings.HEALTH7SRC = 'Assets/UI/Health7.png';
+GameSettings.HEALTH8SRC = 'Assets/UI/Health8.png';
+GameSettings.HEALTH9SRC = 'Assets/UI/Health9.png';
+GameSettings.HEALTH10SRC = 'Assets/UI/Health10.png';
+GameSettings.HEALTH11SRC = 'Assets/UI/Health11.png';
+GameSettings.HEALTH12SRC = 'Assets/UI/Health12.png';
+GameSettings.HEALTH13SRC = 'Assets/UI/Health13.png';
+GameSettings.HEALTHEMPTYSRC = 'Assets/UI/HealthEmpty.png';
 
 //------- Items -------\\
+GameSettings.EMPTYBOTTLESRC = 'Assets/Items/Empty Bottle.png';
+GameSettings.HEALTHBOTTLESRC = 'Assets/Items/Health Bottle.png';
+GameSettings.IRONSWORDSRC = 'Assets/Items/Iron Sword.png';
+GameSettings.SILVERSWORDSRC = 'Assets/Items/Silver Sword.png';
+GameSettings.STEELSWORDSRC = 'Assets/Items/Steel Sword.png';
+GameSettings.GOLDSWORDSRC = 'Assets/Items/Gold Sword.png';
+GameSettings.GUNSRC = 'Assets/Items/Gun.png';
+GameSettings.BBULLETSRC = 'Assets/Items/Bullet.png';
 
+GameSettings.EMPTYITEM = new Item('empty');
 
 //------- Tile Codes -------\\
 GameSettings.WASTELANDCODE = 5;

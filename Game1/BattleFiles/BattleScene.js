@@ -7,8 +7,6 @@ BattleScene.initialize = function() {
 BattleScene.update = function() {
   if (!this.inBattle)
     return;
-
-
 }
 
 BattleScene.draw = function() {
@@ -16,5 +14,6 @@ BattleScene.draw = function() {
 }
 
 BattleScene.loadScene = function() {
-
+  Map.isMapLoaded = false;
+  Map.currentMap = 'BattleMap';
 }

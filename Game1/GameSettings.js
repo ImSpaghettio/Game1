@@ -22,6 +22,7 @@ GameSettings.NUMWEAPONSLOTS = 2;
 GameSettings.FIRSTSLOTX = 2;
 GameSettings.FIRSTSLOTY = 32;
 GameSettings.SLOTSIZE = 51;
+GameSettings.TRANSITIONTIME = .01;
 
 //------- Game Controls -------\\
 GameSettings.UP = enums.keyboard.KEY_W;
@@ -29,6 +30,7 @@ GameSettings.DOWN = enums.keyboard.KEY_S;
 GameSettings.LEFT = enums.keyboard.KEY_A;
 GameSettings.RIGHT = enums.keyboard.KEY_D;
 GameSettings.INVENTORY = enums.keyboard.KEY_E;
+GameSettings.NEXT = enums.keyboard.SPACE;
 
 //------- Assets -------\\
 
@@ -65,6 +67,7 @@ GameSettings.CHARACTERLEFTWALKSRC = 'Assets/Characters/Character1LeftWalk.png';
 
 //------- UI -------\\
 GameSettings.INVENTORYSRC = 'Assets/UI/Inventory Slots.png';
+GameSettings.TEXTBOXSRC = 'Assets/UI/TextBox.png'
 GameSettings.HEALTHFULLSRC = 'Assets/UI/HealthFull.png';
 GameSettings.HEALTH1SRC = 'Assets/UI/Health1.png';
 GameSettings.HEALTH2SRC = 'Assets/UI/Health2.png';
@@ -89,7 +92,7 @@ GameSettings.SILVERSWORDSRC = 'Assets/Items/Silver Sword.png';
 GameSettings.STEELSWORDSRC = 'Assets/Items/Steel Sword.png';
 GameSettings.GOLDSWORDSRC = 'Assets/Items/Gold Sword.png';
 GameSettings.GUNSRC = 'Assets/Items/Gun.png';
-GameSettings.BBULLETSRC = 'Assets/Items/Bullet.png';
+GameSettings.BULLETSRC = 'Assets/Items/Bullet.png';
 
 GameSettings.EMPTYITEM = new Item('empty');
 
@@ -131,12 +134,11 @@ GameSettings.CHARACTERRIGHTWALKCODE;
 
 //------- Creates Image With Id And Src -------\\
 GameSettings.createImage = function (id, src) {
-  var img = document.createElement("IMG");
-
-  img.setAttribute("id", id);
-  img.setAttribute("src", src);
+  var img = document.createElement('IMG');
+  img.setAttribute('id', id);
+  img.setAttribute('src', src);
 
   document.body.appendChild(img);
-  img = document.getElementById(id).style.display = "none"
+  img = document.getElementById(id).style.display = "none";
   return document.getElementById(id);
 }

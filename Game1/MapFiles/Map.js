@@ -85,7 +85,7 @@ Map.getTiles = function () {
   this.tileArray[GameSettings.MIDDLELEFTSMALLHOUSECODE] = (GameSettings.createImage("middleleftsmallhouse", GameSettings.MIDDLELEFTSMALLHOUSESRC).id);
   this.tileArray[GameSettings.MIDDLESMALLHOUSECODE] = (GameSettings.createImage("middlesmallhouse", GameSettings.MIDDLESMALLHOUSESRC).id);
   this.tileArray[GameSettings.MIDDLERIGHTSMALLHOUSECODE] = (GameSettings.createImage("middlerightsmallhouse", GameSettings.MIDDLERIGHTSMALLHOUSESRC).id);
-  this.tileArray[GameSettings.TOPLEFTSMALLHOUSECODE] = (GameSettings.createImage("toprightsmallhouse", GameSettings.TOPLEFTSMALLHOUSESRC).id);
+  this.tileArray[GameSettings.TOPLEFTSMALLHOUSECODE] = (GameSettings.createImage("topleftsmallhouse", GameSettings.TOPLEFTSMALLHOUSESRC).id);
   this.tileArray[GameSettings.TOPMIDDLESMALLHOUSECODE] = (GameSettings.createImage("topmiddlesmallhouse", GameSettings.TOPMIDDLESMALLHOUSESRC).id);
   this.tileArray[GameSettings.TOPRIGHTSMALLHOUSECODE] = (GameSettings.createImage("toprightsmallhouse", GameSettings.TOPRIGHTSMALLHOUSESRC).id);
 
@@ -107,6 +107,7 @@ Map.getTiles = function () {
   this.solidTiles.push(GameSettings.TOPLEFTSMALLHOUSECODE);
   this.solidTiles.push(GameSettings.TOPMIDDLESMALLHOUSECODE);
   this.solidTiles.push(GameSettings.TOPRIGHTSMALLHOUSECODE);
+  this.solidTiles.push(GameSettings.ROCKCODE);
 }
 
 Map.setChange = function(direction, time, posChange) {

@@ -43,8 +43,8 @@ function  mainloop() {
 //------- Called on resize -------\\
 function resize () {
   // Resizes the canvas to fit the screen
-  document.getElementById("gamecanvas").width = window.innerWidth;
-  document.getElementById("gamecanvas").height = window.innerHeight;
+  document.getElementById("gamecanvas").width = window.innerWidth - 4;
+  document.getElementById("gamecanvas").height = window.innerHeight - 4;
 
   GameSettings.SCREENWIDTH = window.innerWidth;
   GameSettings.SCREENHEIGHT = window.innerHeight;

@@ -7,6 +7,7 @@ GameScreen.initialize = function () {
   Map.initialize();
   Character.initialize();
   Inventory.initialize();
+  Text.initialize();
   var isMoving = false, axis, posChange;
 }
 
@@ -90,6 +91,9 @@ GameScreen.checkInventory = function() {
   if (InputManager.checkKey(GameSettings.INVENTORY) && !InputManager.checkLastKey(GameSettings.INVENTORY)) {
     Inventory.isShowing = Inventory.isShowing ? false : true;
   }
+
+  if (InputManager.checkClick())
+    Inventory.checkSwitch();
 }
 
 //------- Draw All Elements Of GameScreen -------\\
@@ -97,4 +101,5 @@ GameScreen.draw = function () {
   Map.draw();
   Character.draw();
   Inventory.draw();
+  Text.draw();
 }

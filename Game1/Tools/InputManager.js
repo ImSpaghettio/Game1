@@ -7,7 +7,12 @@ InputManager.lastPressedKeys = [];
 InputManager.queriedKeys = [];
 InputManager.upQueriedKeys = [];
 InputManager.delQueriedKeys = [];
-InputManager.delPressedKeys = []
+InputManager.delPressedKeys = [];
+InputManager.mouseX;
+InputManager.mouseY;
+InputManager.clicked = false;
+InputManager.realClick = false;
+InputManager.lastRealClick = false;
 
 //------- Add Pressed Keys To queriedKeys -------\\
 window.onkeydown = function(key) {
@@ -25,9 +30,28 @@ window.onkeyup = function (key) {
   InputManager.upQueriedKeys.push(key.keyCode);
 }
 
+window.addEventListener('mousemove', function(e) {
+  InputManager.mouseX = e.pageX;
+  InputManager.mouseY = e.pageY;
+})
+
+window.onmousedown = function(e) {
+  e = e || window.event;
+   if ("buttons" in e) {
+       InputManager.clicked = e.buttons == 1;
+   }
+   else {
+     var button = e.which || e.button;
+     InputManager.clicked = button == 1
+  }
+}
+
 //------- Update keysPressed And lastKeysPressed ------\\
 InputManager.update = function () {
   this.lastPressedKeys = [];
+  this.lastRealClick = this.realClick;
+  this.realClick = this.clicked;
+  this.clicked = false;
 
   for (var i = 0; i < this.pressedKeys.length; i++) {
     this.lastPressedKeys.push(this.pressedKeys[i]);
@@ -71,4 +95,17 @@ InputManager.checkLastKey = function (key) {
       return true;
   }
   return false;
+}
+
+InputManager.checkClickBounds = function(x,y,width, height) {
+  if (!this.lastRealClick && this.realClick) {
+    if (this.mouseX > x && this.mouseX < x + width
+      && this.mouseY > y && this.mouseY < y + height)
+      return true;
+  }
+  return false;
+}
+
+InputManager.checkClick = function() {
+  return (!this.lastRealClick && this.realClick)
 }

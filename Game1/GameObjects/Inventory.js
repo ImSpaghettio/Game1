@@ -31,6 +31,7 @@ Inventory.draw = function() {
   if (this.isShowing){
     canvas = document.getElementById(GameSettings.CANVASID);
     ctx = canvas.getContext('2d');
+    ctx.imageSmoothingEnabled = false;
     this.weaponSlotDrawn = 0;
     this.i = 0;
     this.j = 0;
@@ -40,24 +41,39 @@ Inventory.draw = function() {
     // Draw each item in the inventory
     for (this.i = 0; this.i < GameSettings.INVENTORYROWS; this.i++) {
       for (this.j = 0; this.j < GameSettings.INVENTORYCOLS; this.j++) {
-        this.invArray[this.i][this.j].draw((this.i * GameSettings.SLOTSIZE) + GameSettings.FIRSTSLOTX + GameSettings.INVENTORYX, (this.j*GameSettings.SLOTSIZE) + GameSettings.FIRSTSLOTY + GameSettings.INVENTORYY, ctx)
+        this.invArray[this.i][this.j].draw((this.j * GameSettings.SLOTSIZE) + GameSettings.FIRSTSLOTX + GameSettings.INVENTORYX, (this.i*GameSettings.SLOTSIZE) + GameSettings.FIRSTSLOTY + GameSettings.INVENTORYY, ctx, GameSettings.SLOTSIZE, GameSettings.SLOTSIZE)
       }
       if (this.weaponSlotDrawn < GameSettings.NUMWEAPONSLOTS) {
-        this.invArray[this.i][this.j].draw((this.i * GameSettings.SLOTSIZE) + GameSettings.FIRSTSLOTX + GameSettings.INVENTORYX, (this.j*GameSettings.SLOTSIZE) + GameSettings.FIRSTSLOTY + GameSettings.INVENTORYY, ctx)
+        this.invArray[this.i][this.j].draw((this.j * GameSettings.SLOTSIZE) + GameSettings.FIRSTSLOTX + GameSettings.INVENTORYX, (this.i*GameSettings.SLOTSIZE) + GameSettings.FIRSTSLOTY + GameSettings.INVENTORYY, ctx, GameSettings.SLOTSIZE, GameSettings.SLOTSIZE)
         this.weaponSlotDrawn++;
       }
     }
+    if (this.hand.name != 'empty')
+    this.hand.draw(InputManager.mouseX, InputManager.mouseY, ctx, this.hand.image.width *2, this.hand.image.height *2);
   }
 }
 
 Inventory.checkSwitch = function() {
-  for (var i = 0; i < GameSettings.INVENTORYROWS; i++) {
-    for (var j = 0; j < GameSettings.INVENTORYCOLS; j++) {
-      this.invArray[i][j].draw(i * 50 + 32, j*50 + 2)
+
+  if (!this.isShowing)
+    return;
+
+  this.i = 0;
+  this.y = 0;
+
+  this.weaponChecked = 0;
+
+  for (this.i = 0; this.i < GameSettings.INVENTORYROWS; this.i++) {
+    for (this.j = 0; this.j < GameSettings.INVENTORYCOLS; this.j++) {
+      if (InputManager.checkClickBounds((this.j * GameSettings.SLOTSIZE) + GameSettings.FIRSTSLOTX + GameSettings.INVENTORYX,
+       (this.i*GameSettings.SLOTSIZE) + GameSettings.FIRSTSLOTY + GameSettings.INVENTORYY, GameSettings.SLOTSIZE, GameSettings.SLOTSIZE))
+       this.switchItem(this.i,this.j);
     }
-    if (this.weaponSlotDrawn < GameSettings.NUMWEAPONSLOTS) {
-      this.invArray[i][j].draw(i * 50 + 32, j*50 + 2)
-      this.weaponSlotDone++;
+    if (this.weaponChecked < GameSettings.NUMWEAPONSLOTS) {
+      if (InputManager.checkClickBounds((this.j * GameSettings.SLOTSIZE) + GameSettings.FIRSTSLOTX + GameSettings.INVENTORYX,
+       (this.i*GameSettings.SLOTSIZE) + GameSettings.FIRSTSLOTY + GameSettings.INVENTORYY, GameSettings.SLOTSIZE, GameSettings.SLOTSIZE))
+       this.switchItem(this.i,this.j);
+      this.weaponChecked++;
     }
   }
 }
@@ -69,6 +85,6 @@ Inventory.addItem = function(x,y,item) {
 // Swaps the item in the hand with the slot in the inventory
 Inventory.switchItem = function(x,y) {
   var tmp = this.hand;
-  this.hand = this.Inventory.invArray[x][y]
-  this.Inventory.invArray[x][y] = tmp;
+  this.hand = this.invArray[x][y]
+  this.invArray[x][y] = tmp;
 }

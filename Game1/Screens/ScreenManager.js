@@ -4,10 +4,11 @@
 var ScreenManager = {};
 
 // The current screen
-ScreenManager.currentScreen = 'gamescreen'
+ScreenManager.currentScreen = 'titlescreen'
 
 //------- Initialize All Screens -------\\
 ScreenManager.initialize = function () {
+  TitleScreen.initialize();
   GameScreen.initialize();
 }
 
@@ -43,4 +44,6 @@ ScreenManager.draw = function () {
     default:
 
   }
+
+  Transition.transition();
 }

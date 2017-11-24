@@ -8,9 +8,7 @@ Map.yChange;
 Map.initialize = function () {
   this.isMapLoaded = false;
   MapLoader.initialize();
-  this.mapArray = [
-    "Map1", "Map2"
-  ];
+  this.mapFile = 'Map3';
   Map1Data.initialize();
 
   this.currentMap = null;
@@ -27,17 +25,20 @@ Map.update = function () {
 
     // Set map to null and load new map
     this.currentMap = null;
-    this.currentMap = MapLoader.loadMap('Map3');
+    this.currentMap = MapLoader.loadMap(this.mapFile);
 
      // If it was loaded set loaded to true
     if(this.currentMap != null)
       this.isMapLoaded = true;
-      Map1Data.makeItems();
+      Map1Data.initialize();
   }
 
   //------- Place the map relative to the character -------\\
   this.mapX = GameSettings.SCREENWIDTH/2 - (GameSettings.TILESIZE/2) - (GameSettings.TILESIZE * Character.posOnMapX) + this.xChange;
   this.mapY = (GameSettings.SCREENHEIGHT/2 - GameSettings.TILESIZE) + (GameSettings.CHARACTERHEIGHT/2) - (GameSettings.TILESIZE * Character.posOnMapY) + this.yChange;
+
+  Map1Data.update();
+  this.enemies = Map1Data.enemyArray;
 }
 
 Map.draw = function () {
@@ -48,6 +49,8 @@ Map.draw = function () {
   if (this.isMapLoaded) {
     this.drawMap(ctx);
   }
+
+  Map1Data.draw(ctx);
 }
 
 //------- Draw The Map From Array -------\\
@@ -128,26 +131,67 @@ Map.resetChange = function() {
   this.yChange = 0;
 }
 
+Map.checkBattleScene = function(yPos, xPos, direction){
+
+  if (InputManager.checkKey(GameSettings.NEXT) && InputManager.checkLastKey(GameSettings.NEXT)) {
+    switch (direction) {
+      case 'up':
+        if (this.isEnemy(yPos-1,xPos))
+          return true;
+        return false;
+        break;
+      case 'down':
+      if (this.isEnemy(yPos+1,xPos))
+        return true;
+      return false;
+        break;
+      case 'left':
+        if (this.isEnemy(yPos,xPos-1,))
+          return true;
+        return false;
+        break;
+      case 'right':
+        if (this.isEnemy(yPos,xPos+1,))
+          return true;
+        return false;
+        break;
+    }
+  }
+
+  return false;
+
+}
+
+Map.isEnemy = function(y,x){
+  for (i = 0; i < this.enemies.length; i++){
+    if (this.enemies[i].x == x && this.enemies[i].y == y) {
+      this.currentEnemy = i;
+      return true;
+    }
+  }
+  return false;
+}
+
 //------- Checks If The Player Will Hit A Solid -------\\
 Map.checkLimits = function(xPos, yPos, direction) {
   switch (direction) {
     case 'up':
-      if (this.isSolid(this.currentMap[yPos-1][xPos]))
+      if (this.isSolid(yPos-1,xPos))
         return false;
       return true;
       break;
     case 'down':
-    if (this.isSolid(this.currentMap[yPos+1][xPos]))
+    if (this.isSolid(yPos+1,xPos))
       return false;
     return true;
       break;
     case 'left':
-      if (this.isSolid(this.currentMap[yPos][xPos-1]))
+      if (this.isSolid(yPos,xPos-1,))
         return false;
       return true;
       break;
     case 'right':
-      if (this.isSolid(this.currentMap[yPos][xPos+1]))
+      if (this.isSolid(yPos,xPos+1,))
         return false;
         return true;
       break;
@@ -155,9 +199,16 @@ Map.checkLimits = function(xPos, yPos, direction) {
 }
 
 //------- Checks If A Certain Tile Is Solid -------\\
-Map.isSolid = function(code) {
+Map.isSolid = function(y,x) {
+  code = this.currentMap[y][x];
+
   for(i = 0; i < this.solidTiles.length; i++) {
     if (this.solidTiles[i] == code)
+      return true;
+  }
+
+  for (i = 0; i < this.enemies.length; i++){
+    if (this.enemies[i].x == x && this.enemies[i].y == y)
       return true;
   }
 

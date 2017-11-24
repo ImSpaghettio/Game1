@@ -10,6 +10,7 @@ ScreenManager.currentScreen = 'titlescreen'
 ScreenManager.initialize = function () {
   TitleScreen.initialize();
   GameScreen.initialize();
+  BattleScene.initialize();
 }
 
 //------- Update Current Screen -------\\
@@ -23,6 +24,9 @@ ScreenManager.update = function () {
       break;
     case 'gamescreen':
       GameScreen.update();
+      break;
+    case 'battlescene':
+      BattleScene.update();
       break;
     default:
 
@@ -41,6 +45,9 @@ ScreenManager.draw = function () {
     case 'gamescreen':
       GameScreen.draw();
       break;
+      case 'battlescene':
+        BattleScene.draw();
+        break;
     default:
 
   }

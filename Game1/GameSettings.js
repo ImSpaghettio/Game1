@@ -65,6 +65,9 @@ GameSettings.CHARACTERBACKSRC = 'Assets/Characters/Character1Back.png';
 GameSettings.CHARACTERLEFTSRC = 'Assets/Characters/Character1Left.png';
 GameSettings.CHARACTERLEFTWALKSRC = 'Assets/Characters/Character1LeftWalk.png';
 
+//------- Enemy Images -------\\
+GameSettings.BATSRC = 'Assets/Characters/Bat.png';
+
 //------- UI -------\\
 GameSettings.INVENTORYSRC = 'Assets/UI/Inventory Slots.png';
 GameSettings.TEXTBOXSRC = 'Assets/UI/TextBox.png'

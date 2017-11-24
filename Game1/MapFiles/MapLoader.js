@@ -27,6 +27,7 @@ MapLoader.initialize = function () {
   maps.push(Map1);
   maps.push(Map2);
   maps.push(Map3);
+  maps.push(BattleMap);
 }
 
 //------- Load Map From String -------\\

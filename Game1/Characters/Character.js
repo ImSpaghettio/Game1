@@ -7,6 +7,7 @@ Character.yPos;
 Character.posOnMapX;
 Character.posOnMapY;
 Character.currentImage = 0;
+Character.health;
 
 //------- Character Animation -------\\
 Character.isMoving
@@ -20,6 +21,8 @@ Character.initialize = function () {
 
   this.posOnMapX = 10;
   this.posOnMapY = 10;
+
+  this.health = GameSettings.MAXHEALTH;
 }
 
 Character.update = function () {

@@ -18,6 +18,8 @@ Map.initialize = function () {
   this.mapY = 0;
   this.xChange = 0;
   this.yChange = 0;
+
+  this.enemies = [];
 }
 
 Map.update = function () {

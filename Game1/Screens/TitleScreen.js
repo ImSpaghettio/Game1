@@ -39,6 +39,11 @@ TitleScreen.draw = function () {
 }
 
 TitleScreen.loadInstructions = function() {
+  
+  this.instructionsArr.push("Your goal is to defeat all the bats without dying");
+  this.instructionsArr.push("When in battle move your mouse and click to shoot");
   this.instructionsArr.push("Use the E Key to open your inventory");
   this.instructionsArr.push("Use W A S D keys to move");
+  this.instructionsArr.push("When in game, press space to interact with enemies");
+  this.instructionsArr.push("Press the space bar to see the next instruction");
 }

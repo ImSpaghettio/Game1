@@ -6,6 +6,8 @@ class bat {
     this.y = y;
     this.num = num;
     this.image = image;
+    this.health = 10;
+    this.damage = 5;
   }
 
   draw(ctx){

@@ -23,6 +23,17 @@ GameSettings.FIRSTSLOTX = 2;
 GameSettings.FIRSTSLOTY = 32;
 GameSettings.SLOTSIZE = 51;
 GameSettings.TRANSITIONTIME = .01;
+GameSettings.SHOOTINGTIME = 1;
+GameSettings.MAPX;
+GameSettings.MAPY;
+GameSettings.TORADIANS = Math.PI / 180
+GameSettings.MAXHEALTH = 100;
+
+//------- Save Variables -------\\
+GameSettings.CURRENTMAP;
+GameSettings.CURRENTMAPX;
+GameSettings.CURRENTMAPY;
+GameSettings.CURRENTFACECODE;
 
 //------- Game Controls -------\\
 GameSettings.UP = enums.keyboard.KEY_W;
@@ -124,6 +135,7 @@ GameSettings.TOPRIGHTSMALLHOUSECODE = 15;
 
 //------- Image IDs -------\\
 GameSettings.INVENTORYID = 'Inventory';
+GameSettings.BULLETID = 'bullet';
 
 //------- Character Codes -------\\
 GameSettings.CHARACTERFRONTCODE;
@@ -144,4 +156,15 @@ GameSettings.createImage = function (id, src) {
   document.body.appendChild(img);
   img = document.getElementById(id).style.display = "none";
   return document.getElementById(id);
+}
+
+GameSettings.createSound = function (id, src) {
+  var snd = document.createElement('audio');
+  snd.setAttribute('id', id);
+  snd.setAttribute('src', src);
+  snd.setAttribute('autostart', 'false');
+
+  document.body.append(snd);
+  snd = document.getElementById(id);
+  return snd;
 }

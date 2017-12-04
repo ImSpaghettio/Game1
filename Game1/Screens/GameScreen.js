@@ -10,24 +10,46 @@ GameScreen.initialize = function () {
   Text.initialize();
   var isMoving = false, axis, posChange;
   this.currentDirection = 'down';
+  this.gameEnd = false;
 }
 
 //------- Update All Elements Of GameScreen -------\\
 GameScreen.update = function () {
+
+  if (Map.isMapLoaded && Map.enemies.length == 0) {
+    this.gameEnd = true;
+    Transition.startTransition();
+  }
+
+  if (this.gameEnd && Transition.isMidTrans()) {
+    ScreenManager.currentScreen = 'gameover';
+    GameOver.win = true;
+  }
+
   Map.update();
   Character.update();
   this.checkMovement();
   this.checkInventory();
 
+  // Check if a battle has started
   if (Map.checkBattleScene(Character.posOnMapY, Character.posOnMapX, this.currentDirection) && !Inventory.invArray[0][5].isEmpty() && !Inventory.invArray[1][5].isEmpty())
   {
     Transition.startTransition();
     BattleScene.inBattle = true;
   }
 
+  // If a battle has started change screens in the middle of the transition
   if (BattleScene.inBattle && Transition.isMidTrans())
   {
+    // Save all character and map information
+    GameSettings.CURRENTMAP = Map.mapFile;
+    GameSettings.CURRENTMAPX = Character.posOnMapX;
+    GameSettings.CURRENTMAPY =  Character.posOnMapY;
+    GameSettings.CURRENTFACECODE = Character.currentImage;
+
+    // Switch the screen and delete the enemy
     ScreenManager.currentScreen = 'battlescene';
+    BattleScene.initialize();
     BattleScene.loadScene(Map.enemies[Map.currentEnemy]);
   }
 }
@@ -38,6 +60,19 @@ GameScreen.draw = function () {
   Character.draw();
   Inventory.draw();
   Text.draw();
+}
+
+//------- Restores Map and Character Positions After a Battle -------\\
+GameScreen.restoreFromBattle = function() {
+
+  Map.mapFile = GameSettings.CURRENTMAP;
+  Character.posOnMapX = GameSettings.CURRENTMAPX;
+  Character.posOnMapY = GameSettings.CURRENTMAPY;
+  Character.currentImage = GameSettings.CURRENTFACECODE;
+
+  Map.enemies.splice(Map.currentEnemy, 1);
+
+  Map.isMapLoaded = false;
 }
 
 //------- Check For Character Movement -------\\

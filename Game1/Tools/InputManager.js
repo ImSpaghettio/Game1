@@ -30,6 +30,7 @@ window.onkeyup = function (key) {
   InputManager.upQueriedKeys.push(key.keyCode);
 }
 
+//------- Gets The Mouse Position -------\\
 window.addEventListener('mousemove', function(e) {
   InputManager.mouseX = e.pageX;
   InputManager.mouseY = e.pageY;
@@ -97,6 +98,7 @@ InputManager.checkLastKey = function (key) {
   return false;
 }
 
+//------- Checks If A Position Is In A Square -------\\
 InputManager.checkClickBounds = function(x,y,width, height) {
   if (!this.lastRealClick && this.realClick) {
     if (this.mouseX > x && this.mouseX < x + width
@@ -106,6 +108,7 @@ InputManager.checkClickBounds = function(x,y,width, height) {
   return false;
 }
 
+//-------- Checks For A Left Click -------\\
 InputManager.checkClick = function() {
   return (!this.lastRealClick && this.realClick)
 }

@@ -41,6 +41,9 @@ MapLoader.loadMap = function (mapName) {
   cols = elements[0];
   rows = elements[1];
 
+  GameSettings.MAPX = cols * GameSettings.TILESIZE;
+  GameSettings.MAPY = rows * GameSettings.TILESIZE;
+
   for (var i = 0; i < rows; i++){
     for (var j = 0; j < cols; j++){
       line.push(elements[counter])

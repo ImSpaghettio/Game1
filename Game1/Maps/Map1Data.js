@@ -23,7 +23,7 @@ Map1Data.draw = function(ctx) {
 
 Map1Data.makeItems = function() {
   this.gunImage = GameSettings.createImage('gun', GameSettings.GUNSRC);
-  this.bulletImage = GameSettings.createImage('bullet', GameSettings.BULLETSRC)
+  this.bulletImage = GameSettings.createImage(GameSettings.BULLETID, GameSettings.BULLETSRC)
 
   this.gun = new Item('Gun', 100, this.gunImage, enums.type.WEAPON);
   this.bullet = new Item('Bullet', 100, this.bulletImage, enums.type.WEAPON);
@@ -32,5 +32,6 @@ Map1Data.makeItems = function() {
 }
 
 Map1Data.makeEnemies = function(){
-  this.enemyArray.push(new bat(10,15,1,GameSettings.createImage('bat', GameSettings.BATSRC)));
+  this.enemyArray.push(new bat(10,15,1,GameSettings.createImage('bat1', GameSettings.BATSRC)));
+  this.enemyArray.push(new bat(10,35,1,GameSettings.createImage('bat2', GameSettings.BATSRC)));
 }
